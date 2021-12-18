@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react"
 import "./style.css"
@@ -28,13 +28,13 @@ export default function  FilmsPage() {
         <p className="p-films">Selecione o seu filme</p>
         <div className="wrapper">
             <div className="films-to-choose">
-            {films.map( (film) => {
+            {films.map( (film , i) => {
                 return(
 
                     <Film
-                    key={film.id}
+                    key={i}
                     image={film.posterURL}
-                    
+                    id={film.id}
                     />
                     
                 )
@@ -46,10 +46,10 @@ export default function  FilmsPage() {
     
 }
 
-function Film({image, key}) {
+function Film({image, id}) {
     return(
     <>
-    <Link to={`https://mock-api.driven.com.br/api/v4/cineflex/movies/${key}/showtimes`}>
+    <Link to={`session/${id}`}>
         <img src={image} alt="Film" />
     </Link>
     </>

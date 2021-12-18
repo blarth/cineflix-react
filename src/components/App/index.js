@@ -9,12 +9,12 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar />
-			<Routes>
-				<Route path="/" element={<FilmsPage />}></Route>
-				<Route path="/session/:idFilm" element={<FilmSession />}></Route>
+		<Routes>
+			<Route path="/" element={<FilmsPage />}></Route>
+			<Route path="/session/:idFilm" element={<FilmSession />}></Route>
         
-			</Routes>
-		</BrowserRouter>
+		</Routes>
+	</BrowserRouter>
   );
 }
 
