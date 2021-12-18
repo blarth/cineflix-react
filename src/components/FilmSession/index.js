@@ -5,6 +5,9 @@ import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import InfoSession from './InfoSession';
+import FooterSection from './FooterSection';
+
+import Loading from "../../assets/Loading"
 
 
 function FilmSession() {
@@ -18,6 +21,9 @@ function FilmSession() {
 			setInfos(response.data.days);
 		});
 	}, []);
+    if(!infos) {
+		return <Loading />;
+	}
   
     
 
@@ -32,14 +38,20 @@ function FilmSession() {
 
 
             <InfoDay>{info.weekday} - {info.date}</InfoDay>
+            <Container>
+
             {info.showtimes.map( (showtime , j) => 
                 <InfoTime key={j}>
-                    {showtime.name} 
+                    <p>{showtime.name}</p> 
                 </InfoTime>
             )}
+            </Container>
         </div>
+        
            
         )}
+        <FooterSection
+        idFilm={idFilm}></FooterSection>
         </>
   )
 }
@@ -67,19 +79,36 @@ const InfoDay = styled.p`
   color: #293845;
 `;
 
+const Container = styled.div`
+    display:flex;
+    width:100%;
+    justify-content:flex-start;
+    margin-top: 25px;
+    margin-bottom: 25px;
+`
+
 
 const InfoTime = styled.div`
   width:22%;
-  background-color: #E8833A;
-    height: 11%;
+  margin-left: 15px;
   
-  &p{
+  background-color: #E8833A;
+    height: 5%;
+    display:flex;
+    border-radius: 3px;
+    justify-content:center;
+    align-items: center;
+  
+  & p{
       font-family: Roboto;
       font-size: 20px;
       font-weight: 400;
-      text-align: left;
-      color: #293845;
+      text-align: center;
+      color: #FFFFFF;
+
 
   }  
 
 `;
+
+

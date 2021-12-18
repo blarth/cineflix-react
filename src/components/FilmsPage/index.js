@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react"
 import "./style.css"
-import loading from "./tenor.gif"
+import Loading from "../../assets/Loading"
 import axios from "axios";
 
 
@@ -18,7 +18,7 @@ export default function  FilmsPage() {
 		});
 	}, []);
     if(!films) {
-		return <img className="loadingGif"src={loading} alt="loading"/>;
+		return <Loading/>;
 	}
     
     
