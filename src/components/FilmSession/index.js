@@ -5,7 +5,7 @@ import React from "react";
 /* import "./style.css" */
 import axios from "axios";
 import styled from "styled-components";
-import InfoSession from "./InfoSession";
+/* import InfoSession from "./InfoSession"; */
 import FooterSection from "../FooterSection";
 
 import Loading from "../../assets/Loading";
@@ -40,7 +40,7 @@ function FilmSession() {
               <Link to={`/seats/${showtime.id}`}>
                 <InfoTime key={j}>
                   <p>{showtime.name}</p>
-                  {console.log(info.showtimes)}
+                  
                 </InfoTime>
               </Link>
             ))}
@@ -80,17 +80,16 @@ const Container = styled.div`
 `;
 
 const InfoTime = styled.div`
-  width: 22%;
+  width: 50px;
   margin-left: 15px;
-
   background-color: #e8833a;
-  height: 5%;
+  height: 50px;
   display: flex;
   border-radius: 3px;
   justify-content: center;
   align-items: center;
 
-  & p {
+  p {
     font-family: Roboto;
     font-size: 20px;
     font-weight: 400;

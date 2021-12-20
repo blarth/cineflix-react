@@ -4,7 +4,7 @@
     font-weight: 400;
     text-align: center;
     color: #293845;
-    margin-top: 400px;
+    margin-top: 100px;
 
 }
 
@@ -27,9 +27,12 @@
     margin-top: 40px;
     margin-left: 30px;
     margin-right: 30px;
+    flex-wrap: wrap;
+    justify-content: space-around;
 
 }
 .films-to-choose img{
     max-width: 150px;
     max-height: 150px;
+    margin-left: 15px;
 }
