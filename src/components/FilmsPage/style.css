@@ -31,8 +31,23 @@
     justify-content: space-around;
 
 }
+
+.film-outsider{
+    box-shadow: 0px 2px 4px 2px #0000001A;
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    width: 140px;
+    height: 165px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+
+}
+
 .films-to-choose img{
     max-width: 150px;
     max-height: 150px;
-    margin-left: 15px;
+    
 }

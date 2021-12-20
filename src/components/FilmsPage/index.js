@@ -50,7 +50,9 @@ function Film({image, id}) {
     return(
     <>
     <Link to={`session/${id}`}>
-        <img src={image} alt="Film" />
+        <div className="film-outsider">
+            <img src={image} alt="Film" />
+        </div>
     </Link>
     </>
     )

@@ -23,8 +23,8 @@ function FooterSection({idFilm}) {
   
   
     return (<Container>
-                <Imagem src={infoFilm.posterURL} alt="aqui é a imagem do filme"></Imagem>
-                <p>{infoFilm.title}</p>
+                <Image src={infoFilm.posterURL} alt="aqui é a imagem do filme"></Image>
+                <Paragraph>{infoFilm.title}</Paragraph>
             </Container>)
 }
 
@@ -42,9 +42,18 @@ display: flex;
 `;
 
 
-const Imagem = styled.img`
+const Image = styled.img`
     max-width: 16%;
     max-height: 61%;
 
 
 `;
+
+
+const Paragraph = styled.p`
+font-family: Roboto;
+font-size: 26px;
+color: #293845;
+
+
+`; 

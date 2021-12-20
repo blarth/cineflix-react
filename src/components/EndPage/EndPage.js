@@ -8,19 +8,19 @@ function EndPage() {
   return (
       <>
       <ContainerPedido>
-          Pedido feito<br /> com sucesso!
+        Pedido feito<br /> com sucesso!
       </ContainerPedido>
       <ContainerInfo>
-          <span>Filme e sessão</span>
-          <p>Enola Holmes <br/> 24/06/2021 15:00</p>
+        <span>Filme e sessão</span>
+        <p>Enola Holmes <br/> 24/06/2021 15:00</p>
       </ContainerInfo>
       <ContainerInfo>
-      <span>Ingressos</span>
-          <p>Assento X</p>
+        <span>Ingressos</span>
+        <p>Assento X</p>
       </ContainerInfo>
       <ContainerInfo>
-      <span>Comprador</span>
-          <p>Nome: João da Silva Sauro <br /> CPF: 123.456.789-10</p>
+        <span>Comprador</span>
+        <p>Nome: João da Silva Sauro <br /> CPF: 123.456.789-10</p>
       </ContainerInfo>
       </>
   )

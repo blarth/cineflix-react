@@ -61,6 +61,7 @@ const InfoPage = styled.div`
   text-align: center;
   color: #293845;
   margin-top: 100px;
+  margin-bottom: 40px;
 `;
 
 const InfoDay = styled.p`
@@ -69,6 +70,7 @@ const InfoDay = styled.p`
   font-weight: 400;
   text-align: left;
   color: #293845;
+  margin-left: 25px;
 `;
 
 const Container = styled.div`
@@ -77,11 +79,12 @@ const Container = styled.div`
   justify-content: flex-start;
   margin-top: 25px;
   margin-bottom: 25px;
+  
 `;
 
 const InfoTime = styled.div`
-  width: 50px;
-  margin-left: 15px;
+  width: 100px;
+  margin-left: 25px;
   background-color: #e8833a;
   height: 50px;
   display: flex;
