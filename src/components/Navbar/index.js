@@ -1,15 +1,13 @@
-
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
-
 
 function Navbar() {
   return (
-      <>
+    <>
       <Header>
-          <p>CINEFLEX</p>
+        <p>CINEFLEX</p>
       </Header>
-      </>
+    </>
   );
 }
 

@@ -1,21 +1,19 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import React from "react";
-/* import "./style.css" */
 import axios from "axios";
 import styled from "styled-components";
 import Loading from "../../assets/Loading";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import FooterBuyerSection from "../FooterBuyerSection";
 
-
-function BuySession({request, setRequest}) {
+function BuySession({ request, setRequest }) {
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [seats, setSeats] = useState([]);
   const { idSession } = useParams();
   const [nameBuyer, setnameBuyer] = useState("");
   const [cpfBuyer, setCpfBuyer] = useState("");
-  const navigate  = useNavigate() 
+  const navigate = useNavigate();
 
   useEffect(() => {
     const reqGet = axios.get(
@@ -27,7 +25,12 @@ function BuySession({request, setRequest}) {
         response.data.seats.map((seat) => ({ ...seat, isSelected: false }))
       );
       setSeats(response.data.seats);
-      setRequest([response.data.movie.title, response.data.name, response.data.day.weekday , response.data.day.date])
+      setRequest([
+        response.data.movie.title,
+        response.data.name,
+        response.data.day.weekday,
+        response.data.day.date,
+      ]);
     });
   }, []);
   if (!seats) {
@@ -52,15 +55,15 @@ function BuySession({request, setRequest}) {
       </ContainerSeats>
       <ContainerSub>
         <div className="Subtitles">
-          <SeatsSub></SeatsSub>
+          <SeatsSub color={"#8DD7CF"}/>
           <p>Selecionado</p>
         </div>
         <div className="Subtitles">
-          <SeatsSub />
+          <SeatsSub color={"#C3CFD9"}/>
           <p>Disponível</p>
         </div>
         <div className="Subtitles">
-          <SeatsSub />
+          <SeatsSub color={"#FBE192"}/>
           <p>Indisponível</p>
         </div>
       </ContainerSub>
@@ -77,11 +80,22 @@ function BuySession({request, setRequest}) {
         onChange={(e) => setCpfBuyer(e.target.value)}
       />
       <ContainerButton>
-        <Button onClick={(e) => {
-        SendInformation(selectedSeats,nameBuyer, cpfBuyer, navigate, request, setRequest);
-      }}>Reservar assento(s)</Button>
-        
+        <Button
+          onClick={(e) => {
+            SendInformation(
+              selectedSeats,
+              nameBuyer,
+              cpfBuyer,
+              navigate,
+              request,
+              setRequest
+            );
+          }}
+        >
+          Reservar assento(s)
+        </Button>
       </ContainerButton>
+      <FooterBuyerSection idSession={idSession}></FooterBuyerSection>
     </>
   );
 }
@@ -121,57 +135,51 @@ function changeColor(id, setSelectedSeats, selectedSeats) {
   });
 
   setSelectedSeats(newArray);
-  
 }
 
+function SendInformation(
+  array,
+  nameBuyer,
+  cpfBuyer,
+  navigate,
+  request,
+  setRequest
+) {
+  
 
-function SendInformation(array,  nameBuyer, cpfBuyer, navigate, request, setRequest) {
-  
-  console.log(request)
-  
-  const fetchArray = []
-  array.forEach(seat => { 
-    
-    if(seat.isSelected){
-      fetchArray.push(seat.id)
+  const fetchArray = [];
+  array.forEach((seat) => {
+    if (seat.isSelected) {
+      fetchArray.push(seat.id);
     }
-  })
+  });
+
+  if (isNaN(cpfBuyer) || cpfBuyer.length !== 11) {
+    return alert("Coloque um CPF valido.");
+  }
 
   
-  
-  if(cpfBuyer === NaN || cpfBuyer.length !== 11){
-    
-    return alert("Coloque um CPF valido.")
-  }
   const objectReservation = {
     ids: fetchArray,
     name: nameBuyer,
-    cpf: cpfBuyer
-  }
-  console.log(objectReservation)
-  
+    cpf: cpfBuyer,
+  };
+ 
+
   const reqPost = axios.post(
-    `https://mock-api.driven.com.br/api/v4/cineflex/seats/book-many`
-  , objectReservation);
+    `https://mock-api.driven.com.br/api/v4/cineflex/seats/book-many`,
+    objectReservation
+  );
 
   reqPost.then((response) => {
-    navigate("/sucesso")
+    setRequest(request.push(objectReservation))
+    navigate("/sucesso");
+    console.log(request)
   });
   reqPost.catch((response) => {
-    console.log(response)
+    console.log(response);
   });
 }
-  /* useEffect(() => {
-    const reqPost = axios.post(
-      `https://mock-api.driven.com.br/api/v4/cineflex/seats/book-many`
-    , objectReservation);
-
-    reqPost.then((response) => {
-      console.log(response)
-    });
-  }, []); */
-
-
 
 const InfoBuySession = styled.div`
   font-family: Roboto;
@@ -184,10 +192,12 @@ const InfoBuySession = styled.div`
 
 const ContainerSeats = styled.div`
   display: flex;
-  width: 100%;
+  width: 95%;
   height: 24%;
   justify-content: space-between;
   flex-wrap: wrap;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 const Seats = styled.div`
@@ -198,7 +208,7 @@ const Seats = styled.div`
       ? "#C3CFD9"
       : "#FBE192"};
   border: 1px solid #808f9d;
-  border-radius: 12px;
+  border-radius: 35px;
   height: 26px;
   width: 26px;
   display: flex;
@@ -206,6 +216,8 @@ const Seats = styled.div`
   align-items: center;
   margin-right: 7px;
   margin-top: 19px;
+  font-family: Roboto;
+  font-size: 11px;
 `;
 
 const ContainerSub = styled.div`
@@ -215,9 +227,9 @@ const ContainerSub = styled.div`
   justify-content: space-around;
   flex-wrap: wrap;
   margin-top: 16px;
-  p{
-    color: #4E5A65;
-
+  margin-bottom: 42px;
+  p {
+    color: #4e5a65;
   }
 `;
 
@@ -227,6 +239,7 @@ const ContainerButton = styled.div`
   height: 12%;
   justify-content: center;
   align-items: center;
+  margin-bottom: 30px;
 `;
 
 const Button = styled.button`
@@ -234,53 +247,50 @@ const Button = styled.button`
   width: 65%;
   height: 45px;
   border-radius: 3px;
-  color: #FFFFFF;
+  color: #ffffff;
   margin-top: 50px;
   font-family: Roboto;
   font-size: 18px;
-
-
-
 `;
 
 const SeatsSub = styled.div`
-  background-color: #c3cfd9;
+  background-color: ${props => props.color};
   border: 1px solid #808f9d;
-  border-radius: 12px;
+  border-radius: 35px;
   height: 26px;
   width: 26px;
   margin-left: 25px;
 `;
 
 const Input = styled.input`
-width: 90%;
-height: 35px;
+  width: 85%;
+  height: 35px;
+  margin-left: 24px;
 
-border: 1px solid #D4D4D4
-background-color: #FFFFFF;
+  border: 1px solid #d4d4d4;
+  background-color: #ffffff;
 
-    ::placeholder{
-      color: #AFAFAF;
-      font-family: Roboto;
-      font-size: 18px;
-      font-style: italic;
-      text-align: left;
+  ::placeholder {
+    color: #afafaf;
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: italic;
+    text-align: left;
   }
-    p{
-      color: #AFAFAF;
-      font-family: Roboto;
-      font-size: 18px;
-      font-style: italic;
-      text-align: left;
-
-
-    }
+  p {
+    color: #afafaf;
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: italic;
+    text-align: left;
+  }
 `;
 
 const PInfo = styled.p`
-font-family: Roboto;
-font-size: 18px;
-text-align: left;
-color: #293845;
-
+  font-family: Roboto;
+  font-size: 18px;
+  text-align: left;
+  color: #293845;
+  margin-top: 10px;
+  margin-left: 24px;
 `;

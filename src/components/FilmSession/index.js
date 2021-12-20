@@ -5,7 +5,6 @@ import React from "react";
 /* import "./style.css" */
 import axios from "axios";
 import styled from "styled-components";
-/* import InfoSession from "./InfoSession"; */
 import FooterSection from "../FooterSection";
 
 import Loading from "../../assets/Loading";
@@ -40,7 +39,6 @@ function FilmSession() {
               <Link to={`/seats/${showtime.id}`}>
                 <InfoTime key={j}>
                   <p>{showtime.name}</p>
-                  
                 </InfoTime>
               </Link>
             ))}
@@ -79,7 +77,6 @@ const Container = styled.div`
   justify-content: flex-start;
   margin-top: 25px;
   margin-bottom: 25px;
-  
 `;
 
 const InfoTime = styled.div`
