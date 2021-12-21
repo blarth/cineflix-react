@@ -21,7 +21,7 @@ function FooterBuyerSection({idSession}) {
     }, []);
   
     if (!infoFilmAll) {
-      return <div />;
+      return <p>Hello</p>
     }
     
     return (

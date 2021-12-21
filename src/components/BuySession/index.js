@@ -95,7 +95,7 @@ function BuySession({ request, setRequest }) {
           Reservar assento(s)
         </Button>
       </ContainerButton>
-      <FooterBuyerSection idSession={idSession}></FooterBuyerSection>
+      {/* <FooterBuyerSection idSession={idSession}></FooterBuyerSection> */}
     </>
   );
 }
