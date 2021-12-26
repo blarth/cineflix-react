@@ -51,4 +51,6 @@ const Paragraph = styled.p`
   font-family: Roboto;
   font-size: 26px;
   color: #293845;
+  margin-top: 35px;
+  margin-left: 10px;
 `;

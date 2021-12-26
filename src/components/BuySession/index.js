@@ -95,7 +95,7 @@ function BuySession({ request, setRequest }) {
           Reservar assento(s)
         </Button>
       </ContainerButton>
-      {/* <FooterBuyerSection idSession={idSession}></FooterBuyerSection> */}
+      <FooterBuyerSection idSession={idSession}></FooterBuyerSection>
     </>
   );
 }
@@ -172,9 +172,9 @@ function SendInformation(
   );
 
   reqPost.then((response) => {
-    setRequest(request.push(objectReservation))
+    setRequest(...request , objectReservation)
     navigate("/sucesso");
-    console.log(request)
+    
   });
   reqPost.catch((response) => {
     console.log(response);

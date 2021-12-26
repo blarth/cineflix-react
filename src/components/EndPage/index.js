@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 // import { Container } from './styles';
 
-function EndPage({request}) {
+function EndPage(request) {
   return (
     <>
       <ContainerSucess>

@@ -7,7 +7,7 @@ import Loading from "../../assets/Loading";
 // import { Container } from './styles';
 
 function FooterBuyerSection({idSession}) {
-    const [infoFilmAll, setInfoFilmAll] = useState([]);
+    const [infoFilmAll, setInfoFilmAll] = useState(null);
   
     useEffect(() => {
       const reqGet = axios.get(
@@ -20,15 +20,17 @@ function FooterBuyerSection({idSession}) {
       });
     }, []);
   
-    if (!infoFilmAll) {
+    if (infoFilmAll === null) {
       return <p>Hello</p>
     }
     
     return (
       <Container>
         <Image src={infoFilmAll.movie.posterURL} alt="aqui é a imagem do filme"></Image>
-        <Paragraph>{infoFilmAll.movie.title}</Paragraph>
-        <Paragraph>{infoFilmAll.day.weekday} - {infoFilmAll.day.date}</Paragraph>
+        <ContainerP>
+          <Paragraph>{infoFilmAll.movie.title}</Paragraph>
+          <Paragraph>{infoFilmAll.day.weekday} - {infoFilmAll.name}</Paragraph>
+        </ContainerP>
         
       </Container>
     );
@@ -57,3 +59,9 @@ export default FooterBuyerSection;
     color: #293845;
   `;
   
+  const ContainerP = styled.div`
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 14px;
+  `;
