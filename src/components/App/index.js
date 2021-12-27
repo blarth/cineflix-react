@@ -13,15 +13,13 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<FilmsPage />}></Route>
-      </Routes>
-      <Routes>
-        <Route path="/session/:idFilm" element={<FilmSession />}></Route>
+        <Route path="/" exact element={<FilmsPage />}></Route>
+        <Route path="/session/:idFilm" exact element={<FilmSession />}></Route>
         <Route
-          path="/seats/:idSession"
+          path="/seats/:idSession" exact
           element={<BuySession request={request} setRequest={setRequest} />}
         ></Route>
-        <Route path="/sucesso" element={<EndPage request={request} />}></Route>
+        <Route path="/sucesso" exact element={<EndPage request={request} />}></Route>
       </Routes>
     </BrowserRouter>
   );

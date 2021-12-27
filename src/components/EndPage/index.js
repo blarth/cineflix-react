@@ -4,11 +4,13 @@ import { Link } from "react-router-dom";
 
 // import { Container } from './styles';
 
-function EndPage(request) {
+function EndPage({request}) {
+  
+  console.log({request})
   return (
     <>
       <ContainerSucess>
-        {console.log(request)}
+        
         Pedido feito
         <br /> com sucesso!
       </ContainerSucess>

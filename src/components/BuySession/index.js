@@ -25,12 +25,12 @@ function BuySession({ request, setRequest }) {
         response.data.seats.map((seat) => ({ ...seat, isSelected: false }))
       );
       setSeats(response.data.seats);
-      setRequest([
-        response.data.movie.title,
+      setRequest(
+        [response.data.movie.title,
         response.data.name,
         response.data.day.weekday,
-        response.data.day.date,
-      ]);
+        response.data.day.date]
+      );
     });
   }, []);
   if (!seats) {
@@ -55,15 +55,15 @@ function BuySession({ request, setRequest }) {
       </ContainerSeats>
       <ContainerSub>
         <div className="Subtitles">
-          <SeatsSub color={"#8DD7CF"}/>
+          <SeatsSub color={"#8DD7CF"} />
           <p>Selecionado</p>
         </div>
         <div className="Subtitles">
-          <SeatsSub color={"#C3CFD9"}/>
+          <SeatsSub color={"#C3CFD9"} />
           <p>Disponível</p>
         </div>
         <div className="Subtitles">
-          <SeatsSub color={"#FBE192"}/>
+          <SeatsSub color={"#FBE192"} />
           <p>Indisponível</p>
         </div>
       </ContainerSub>
@@ -145,8 +145,6 @@ function SendInformation(
   request,
   setRequest
 ) {
-  
-
   const fetchArray = [];
   array.forEach((seat) => {
     if (seat.isSelected) {
@@ -158,23 +156,20 @@ function SendInformation(
     return alert("Coloque um CPF valido.");
   }
 
-  
   const objectReservation = {
     ids: fetchArray,
     name: nameBuyer,
     cpf: cpfBuyer,
   };
- 
 
   const reqPost = axios.post(
     `https://mock-api.driven.com.br/api/v4/cineflex/seats/book-many`,
     objectReservation
   );
-
+  console.log(request)
   reqPost.then((response) => {
-    setRequest(...request , objectReservation)
+    setRequest([...request, objectReservation]);
     navigate("/sucesso");
-    
   });
   reqPost.catch((response) => {
     console.log(response);
@@ -254,7 +249,7 @@ const Button = styled.button`
 `;
 
 const SeatsSub = styled.div`
-  background-color: ${props => props.color};
+  background-color: ${(props) => props.color};
   border: 1px solid #808f9d;
   border-radius: 35px;
   height: 26px;

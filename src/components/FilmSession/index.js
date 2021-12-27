@@ -5,9 +5,10 @@ import React from "react";
 /* import "./style.css" */
 import axios from "axios";
 import styled from "styled-components";
-import FooterSection from "../FooterSection";
 
+import FooterSection from "../FooterSection";
 import Loading from "../../assets/Loading";
+
 
 function FilmSession() {
   const [infos, setInfos] = useState([]);
@@ -36,7 +37,7 @@ function FilmSession() {
           </InfoDay>
           <Container>
             {info.showtimes.map((showtime, j) => (
-              <Link to={`/seats/${showtime.id}`}>
+              <Link key={j} to={`/seats/${showtime.id}`}>
                 <InfoTime key={j}>
                   <p>{showtime.name}</p>
                 </InfoTime>
