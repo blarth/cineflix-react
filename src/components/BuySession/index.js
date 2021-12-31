@@ -26,10 +26,10 @@ function BuySession({ request, setRequest }) {
       );
       setSeats(response.data.seats);
       setRequest(
-        [response.data.movie.title,
-        response.data.name,
-        response.data.day.weekday,
-        response.data.day.date]
+       { title : response.data.movie.title,
+        time : response.data.name,
+        day : response.data.day.weekday,
+        date : response.data.day.date}
       );
     });
   }, []);
@@ -168,7 +168,7 @@ function SendInformation(
   );
   console.log(request)
   reqPost.then((response) => {
-    setRequest([...request, objectReservation]);
+    setRequest({...request, reservation : objectReservation});
     navigate("/sucesso");
   });
   reqPost.catch((response) => {

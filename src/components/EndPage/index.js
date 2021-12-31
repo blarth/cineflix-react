@@ -4,9 +4,44 @@ import { Link } from "react-router-dom";
 
 // import { Container } from './styles';
 
-function EndPage({request}) {
+function checkId(id) {
   
-  console.log({request})
+  while(id > 50){
+      id -= 50
+  }
+  return id
+}
+
+function checkCpf(cpf) {
+  let newCpf = [...cpf]
+
+  for(let i = 0;  i < newCpf.length; i++){
+    switch(i+1){
+      case 3:
+        newCpf.splice(i+1 , 0 , ".")
+        break
+      case 6:
+        newCpf.splice(i+2 , 0 , ".")
+        break
+      case 9: 
+        newCpf.splice(i+3 , 0 , "-")
+        break
+      default:
+        
+        break
+    }
+    
+
+
+}
+  let cpfInfo = newCpf.join("")
+  return cpfInfo
+}
+
+function EndPage({request}) {
+  let cpf = checkCpf(request.reservation.cpf)
+  
+  console.log(cpf)
   return (
     <>
       <ContainerSucess>
@@ -17,17 +52,20 @@ function EndPage({request}) {
       <ContainerInfo>
         <span>Filme e sessão</span>
         <p>
-          Sabado <br /> 24/06/2021 15:00
+          {request.title} <br /> {request.date} {request.time}
         </p>
       </ContainerInfo>
       <ContainerInfo>
         <span>Ingressos</span>
-        <p>Assento X</p>
+        {request.reservation.ids.map( id => {
+          id = checkId(id)
+          return <p>Assento {id}</p>
+        })}
       </ContainerInfo>
       <ContainerInfo>
         <span>Comprador</span>
         <p>
-          Nome: João da Silva Sauro <br /> CPF: 123.456.789-10
+          Nome: {request.reservation.name} <br /> CPF: {cpf}
         </p>
       </ContainerInfo>
       <Link to="/">
@@ -82,5 +120,6 @@ const ContainerInfo = styled.div`
     font-style: normal;
     font-weight: 700;
     color: #293845;
+    margin-bottom: 10px;
   }
 `;
