@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./style.css";
-import Loading from "../../assets/Loading";
+import Loading from "../Loading";
 import axios from "axios";
 
 export default function FilmsPage() {
   const [films, setFilms] = useState([]);
 
+
+   
   useEffect(() => {
     const requisitionGET = axios.get(
       "https://mock-api.driven.com.br/api/v4/cineflex/movies"
@@ -16,10 +18,10 @@ export default function FilmsPage() {
       setFilms(response.data);
     });
   }, []);
-  if (!films) {
+ 
+  if (films.length === 0) {
     return <Loading />;
   }
-
   return (
     <>
       <p className="p-films">Selecione o seu filme</p>

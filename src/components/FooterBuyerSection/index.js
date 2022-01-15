@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
-import Loading from "../../assets/Loading";
+import Loading from "../Loading";
 
 // import { Container } from './styles';
 

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import React from "react";
 import axios from "axios";
 import styled from "styled-components";
-import Loading from "../../assets/Loading";
+import Loading from "../Loading";
 import { useNavigate } from "react-router-dom";
 import FooterBuyerSection from "../FooterBuyerSection";
 
@@ -13,7 +13,7 @@ function BuySession({ request, setRequest }) {
   const { idSession } = useParams();
   const [nameBuyer, setnameBuyer] = useState("");
   const [cpfBuyer, setCpfBuyer] = useState("");
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const reqGet = axios.get(
@@ -33,7 +33,7 @@ function BuySession({ request, setRequest }) {
       );
     });
   }, []);
-  if (!seats) {
+  if (seats.length === 0) {
     return <Loading />;
   }
 
@@ -246,6 +246,7 @@ const Button = styled.button`
   margin-top: 50px;
   font-family: Roboto;
   font-size: 18px;
+  border: none;
 `;
 
 const SeatsSub = styled.div`

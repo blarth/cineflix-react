@@ -2,12 +2,10 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import React from "react";
-/* import "./style.css" */
 import axios from "axios";
 import styled from "styled-components";
-
 import FooterSection from "../FooterSection";
-import Loading from "../../assets/Loading";
+import Loading from "../Loading";
 
 
 function FilmSession() {
@@ -23,7 +21,7 @@ function FilmSession() {
       setInfos(response.data.days);
     });
   }, []);
-  if (!infos) {
+  if (infos.length === 0) {
     return <Loading />;
   }
 

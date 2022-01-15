@@ -5,7 +5,11 @@ import loading from "./tenor.gif";
 // import { Container } from './styles';
 
 function Loading() {
-  return <Imagem src={loading} alt="loading" />;
+  return (
+    <>
+      <Imagem src={loading} alt="loading" />
+    </>
+  )
 }
 
 export default Loading;
@@ -16,5 +20,5 @@ const Imagem = styled.img`
     position: absolute;
     top: 20%;
     left: 25%;
-}
+
 `;

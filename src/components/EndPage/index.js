@@ -24,7 +24,7 @@ function checkCpf(cpf) {
         newCpf.splice(i+2 , 0 , ".")
         break
       case 9: 
-        newCpf.splice(i+3 , 0 , "-")
+        newCpf.splice(i+3  , 0 , "-")
         break
       default:
         
@@ -34,8 +34,8 @@ function checkCpf(cpf) {
 
 
 }
-  let cpfInfo = newCpf.join("")
-  return cpfInfo
+  return  newCpf.join("")
+  
 }
 
 function EndPage({request}) {
@@ -87,6 +87,7 @@ const Button = styled.button`
   font-family: Roboto;
   font-size: 18px;
   margin-left: 70px;
+  border: none;
 `;
 
 const ContainerSucess = styled.div`
