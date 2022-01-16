@@ -9,7 +9,7 @@ import Loading from "../Loading";
 
 
 function FilmSession() {
-  const [infos, setInfos] = useState([]);
+  const [infos, setInfos] = useState(null);
   const { idFilm } = useParams();
 
   useEffect(() => {
@@ -21,7 +21,7 @@ function FilmSession() {
       setInfos(response.data.days);
     });
   }, []);
-  if (infos.length === 0) {
+  if (infos === null) {
     return <Loading />;
   }
 

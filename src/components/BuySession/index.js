@@ -262,6 +262,11 @@ const Input = styled.input`
   width: 85%;
   height: 35px;
   margin-left: 24px;
+  color: #afafaf;
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: italic;
+    text-align: left;
 
   border: 1px solid #d4d4d4;
   background-color: #ffffff;
@@ -273,13 +278,7 @@ const Input = styled.input`
     font-style: italic;
     text-align: left;
   }
-  p {
-    color: #afafaf;
-    font-family: Roboto;
-    font-size: 18px;
-    font-style: italic;
-    text-align: left;
-  }
+  
 `;
 
 const PInfo = styled.p`
